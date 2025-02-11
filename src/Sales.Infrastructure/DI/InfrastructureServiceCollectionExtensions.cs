@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sales.Application.Services;
 using Sales.Domain.Abstractions;
+using Sales.Domain.Carts;
 using Sales.Infrastructure.Persistence;
 using Sales.Infrastructure.Persistence.Repositories;
 
@@ -36,6 +37,7 @@ public static class InfrastructureServiceCollectionExtensions
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<ICartRepository, CartRepository>();
         services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
         return services;

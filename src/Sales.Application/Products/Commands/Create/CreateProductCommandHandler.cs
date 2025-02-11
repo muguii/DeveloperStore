@@ -31,6 +31,6 @@ internal sealed class CreateProductCommandHandler : IRequestHandler<CreateProduc
         await _unitOfWork.Product.AddAsync(productResult.Value!, cancellationToken).ConfigureAwait(false);
         await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-        return ApplicationResult<ProductDto>.Created(_mapper.Map<ProductDto>(productResult.Value!));
+        return ApplicationResult<ProductDto>.Success(_mapper.Map<ProductDto>(productResult.Value!));
     }
 }

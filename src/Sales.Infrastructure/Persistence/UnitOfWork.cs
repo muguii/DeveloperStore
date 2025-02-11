@@ -1,5 +1,6 @@
 ﻿using Sales.Application.Services;
 using Sales.Domain.Abstractions;
+using Sales.Domain.Carts;
 using Sales.Domain.Products;
 
 namespace Sales.Infrastructure.Persistence;
@@ -9,12 +10,14 @@ public sealed class UnitOfWork : IUnitOfWork
     private readonly ApplicationDbContext _dbContext;
 
     public IRepository<Product> Product { get; }
+    public ICartRepository Cart { get; }
 
-    public UnitOfWork(ApplicationDbContext dbContext, IRepository<Product> product)
+    public UnitOfWork(ApplicationDbContext dbContext, IRepository<Product> product, ICartRepository cart)
     {
         _dbContext = dbContext;
-        
+
         Product = product;
+        Cart = cart;
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken) 

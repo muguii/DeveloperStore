@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Application.Products.Commands.Create;
-using Sales.Application.Products.Commands.Delete;
+using Sales.Application.Products.Commands.DeleteById;
 using Sales.Application.Products.Commands.Update;
 using Sales.Application.Products.Queries.GetAll;
 using Sales.Application.Products.Queries.GetAllCategories;
@@ -67,7 +67,7 @@ public sealed class ProductController : Shared.ControllerBase
     [HttpDelete("{id:Guid}")]
     public async Task<IActionResult> DeleteById(Guid id)
     {
-        ApplicationResult deleteProductResult = await Sender.Send(new DeleteProductCommand { Id = id }).ConfigureAwait(false);
+        ApplicationResult deleteProductResult = await Sender.Send(new DeleteProductByIdCommand { Id = id }).ConfigureAwait(false);
         return base.ApplicationResultToActionResult(deleteProductResult);
     }
 }
