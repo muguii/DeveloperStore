@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Carts\" />
-    <Folder Include="Products\" />
-    <Folder Include="Shared\" />
-  </ItemGroup>
-
 </Project>
