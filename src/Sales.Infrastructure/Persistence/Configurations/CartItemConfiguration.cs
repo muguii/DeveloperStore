@@ -12,14 +12,16 @@ internal sealed class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
 
         builder.ToTable(className);
 
-        builder.HasKey(p => p.Id)
+        builder.Ignore(ci => ci.DomainEvents);
+
+        builder.HasKey(ci => ci.Id)
                .HasName($"PK_{className}_Id");
-        builder.Property(p => p.Id)
+        builder.Property(ci => ci.Id)
                .ValueGeneratedNever()
                .IsRequired()
                .HasColumnOrder(1);
 
-        builder.HasOne(c => c.Product)
+        builder.HasOne(ci => ci.Product)
                .WithMany()
                .HasForeignKey(ci => ci.ProductId)
                .OnDelete(DeleteBehavior.NoAction);

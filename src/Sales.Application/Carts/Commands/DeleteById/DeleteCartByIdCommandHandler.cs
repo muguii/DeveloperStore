@@ -24,6 +24,6 @@ internal sealed class DeleteCartByIdCommandHandler : IRequestHandler<DeleteCartB
         _unitOfWork.Cart.Remove(cart);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return ApplicationResult.NoContent();
+        return ApplicationResult.Success();
     }
 }

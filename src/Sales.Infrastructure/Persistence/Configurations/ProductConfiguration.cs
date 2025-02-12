@@ -12,6 +12,8 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.ToTable(className);
 
+        builder.Ignore(p => p.DomainEvents);
+
         builder.HasKey(p => p.Id)
                .HasName($"PK_{className}_Id");
         builder.Property(p => p.Id)

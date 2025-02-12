@@ -13,6 +13,7 @@ public class ValueResult
     }
 
     public static ValueResult Success() => new(true, null);
+    public static ValueResult Failure(FailureDetail failureDetail) => Failure([failureDetail]);
     public static ValueResult Failure(IReadOnlyList<FailureDetail> failureDetails) => new(false, failureDetails);
 
 }
@@ -32,5 +33,6 @@ public class ValueResult<TValue> where TValue : class
     }
 
     public static ValueResult<TValue> Success(TValue value) => new(true, value, null);
+    public static ValueResult<TValue> Failure(FailureDetail failureDetail) => Failure([failureDetail]);
     public static ValueResult<TValue> Failure(IReadOnlyList<FailureDetail> failureDetails) => new(false, null, failureDetails);
 }
