@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Sales.Application.Services;
 using Sales.Domain.Abstractions;
 using Sales.Domain.Carts;
@@ -21,6 +23,26 @@ public static class InfrastructureServiceCollectionExtensions
                 .AddUnitOfWork();
 
         return services;
+    }
+
+    public static void ApplyMigrations(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+
+        var services = scope.ServiceProvider;
+        var logger = services.GetRequiredService<ILogger<ApplicationDbContext>>();
+        var context = services.GetRequiredService<ApplicationDbContext>();
+
+        try
+        {
+            context.Database.Migrate();
+
+            logger.LogInformation("Migrations aplicadas com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError($"Erro ao aplicar migrations: {ex}");
+        }
     }
 
     private static void AddConfigurationsProviders(ConfigurationManager configuration)
