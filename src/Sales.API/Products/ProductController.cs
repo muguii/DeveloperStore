@@ -12,7 +12,7 @@ using Sales.Application.Shared;
 
 namespace Sales.API.Products;
 
-[Route("api/products")]
+[Route("products")]
 public sealed class ProductController : Shared.ControllerBase
 {
     public ProductController(ISender sender) : base(sender)

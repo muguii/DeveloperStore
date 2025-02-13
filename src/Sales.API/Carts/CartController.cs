@@ -10,7 +10,7 @@ using Sales.Application.Shared;
 
 namespace Sales.API.Carts;
 
-[Route("api/carts")]
+[Route("carts")]
 public sealed class CartController : Shared.ControllerBase
 {
     public CartController(ISender sender) : base(sender)

@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/products",
+      "DownstreamPathTemplate": "/products",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,11 +9,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/products",
+      "UpstreamPathTemplate": "/products",
       "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/products/category/{category}",
+      "DownstreamPathTemplate": "/products/category/{category}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -21,11 +21,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/products/category/{category}",
+      "UpstreamPathTemplate": "/products/category/{category}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/products/categories",
+      "DownstreamPathTemplate": "/products/categories",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -33,11 +33,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/products/categories",
+      "UpstreamPathTemplate": "/products/categories",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamPathTemplate": "/products/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -45,11 +45,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/products/{id}",
+      "UpstreamPathTemplate": "/products/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/api/carts",
+      "DownstreamPathTemplate": "/carts",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -57,11 +57,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/carts",
+      "UpstreamPathTemplate": "/carts",
       "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/carts/{id}",
+      "DownstreamPathTemplate": "/carts/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -69,11 +69,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/carts/{id}",
+      "UpstreamPathTemplate": "/carts/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/api/sales",
+      "DownstreamPathTemplate": "/sales",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -81,11 +81,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/sales",
+      "UpstreamPathTemplate": "/sales",
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/sales/{id}",
+      "DownstreamPathTemplate": "/sales/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -93,11 +93,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/sales/{id}",
+      "UpstreamPathTemplate": "/sales/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT" ]
     },
     {
-      "DownstreamPathTemplate": "/api/sales/{id}/add-item",
+      "DownstreamPathTemplate": "/sales/{id}/add-item",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -105,11 +105,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/sales/{id}/add-item",
+      "UpstreamPathTemplate": "/sales/{id}/add-item",
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/sales/{id}/remove-item",
+      "DownstreamPathTemplate": "/sales/{id}/remove-item",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -117,11 +117,11 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/sales/{id}/remove-item",
+      "UpstreamPathTemplate": "/sales/{id}/remove-item",
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/sales/{id}/cancel",
+      "DownstreamPathTemplate": "/sales/{id}/cancel",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -129,7 +129,7 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/sales/{id}/cancel",
+      "UpstreamPathTemplate": "/sales/{id}/cancel",
       "UpstreamHttpMethod": [ "POST" ]
     }
   ],

@@ -11,7 +11,7 @@ using Sales.Application.Shared;
 
 namespace Sales.API.Sales;
 
-[Route("api/sales")]
+[Route("sales")]
 public sealed class SaleController : Shared.ControllerBase
 {
     public SaleController(ISender sender) : base(sender)
