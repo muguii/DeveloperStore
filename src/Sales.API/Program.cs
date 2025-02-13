@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
        .UseSwaggerUI();
 
 app.UseExceptionHandler()
-   .UseHttpsRedirection()
+   //.UseHttpsRedirection()
    .UseAuthorization();
 
 app.MapControllers();

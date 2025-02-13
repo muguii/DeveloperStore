@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  gateway:
+    container_name: ocelot-gateway
+    build:
+      context: ./src/Gateway/API.Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "7777:8080"
+    depends_on:
+      - api
+
+  api:
+    container_name: sales-api
+    build:
+      context: ./src
+      dockerfile: Sales.API/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DeveloperStore=Host=db;Port=5432;Database=DeveloperStore;Username=postgres;Password=fancy@password323
+
+  db:
+    image: postgres:latest
+    container_name: postgressql
+    restart: always
+    environment:
+      POSTGRES_DB: DeveloperStore
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: fancy@password323
+    ports:
+      - "5432:5432"

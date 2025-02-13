@@ -6,10 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CD36F370-9880-480F-9EDA-05056715F28D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{9D7BEB31-7F26-4428-AD86-5589B7D4AD16}"
-	ProjectSection(SolutionItems) = preProject
-		src\Gateway\Dockerfile = src\Gateway\Dockerfile
-		src\Gateway\ocelot.json = src\Gateway\ocelot.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CCF5D8BD-4773-4D4C-A6F6-A30EFD99A65B}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3F74A772-D40A-4498-8D4D-97809D218DD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.UnitTests", "tests\Sales.UnitTests\Sales.UnitTests.csproj", "{3D92546D-85D2-4295-A349-F874F7839A7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Gateway", "src\Gateway\API.Gateway\API.Gateway.csproj", "{C7AE4BA8-0D0F-4986-B4F4-56BD2ED5F4B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +53,10 @@ Global
 		{3D92546D-85D2-4295-A349-F874F7839A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D92546D-85D2-4295-A349-F874F7839A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D92546D-85D2-4295-A349-F874F7839A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7AE4BA8-0D0F-4986-B4F4-56BD2ED5F4B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7AE4BA8-0D0F-4986-B4F4-56BD2ED5F4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7AE4BA8-0D0F-4986-B4F4-56BD2ED5F4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7AE4BA8-0D0F-4986-B4F4-56BD2ED5F4B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,5 +68,6 @@ Global
 		{DFD7D363-129E-46B8-BE3D-B258CC4E014F} = {CD36F370-9880-480F-9EDA-05056715F28D}
 		{FB82E8B1-620D-4AF1-93DA-8228652FDB75} = {CD36F370-9880-480F-9EDA-05056715F28D}
 		{3D92546D-85D2-4295-A349-F874F7839A7A} = {3F74A772-D40A-4498-8D4D-97809D218DD8}
+		{C7AE4BA8-0D0F-4986-B4F4-56BD2ED5F4B1} = {9D7BEB31-7F26-4428-AD86-5589B7D4AD16}
 	EndGlobalSection
 EndGlobal
