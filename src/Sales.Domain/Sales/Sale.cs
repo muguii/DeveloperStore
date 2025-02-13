@@ -68,13 +68,13 @@ public sealed class Sale : BaseEntity
         if (Status == SaleStatus.Cancelled)
             return ValueResult<SaleItem>.Failure(SaleFailureDetail.SaleCancelledCannotBeChanged);
 
-        var saleItemResult = SaleItem.Create(Id, product, quantity);
-        if (saleItemResult.Succeeded)
-        {
-            Products.Add(saleItemResult.Value!);
+        var existingItem = Products.FirstOrDefault(si => si.ProductId == product.Id);
 
+        var saleItemResult = existingItem is null ? AddNewItem(product, quantity) 
+                                                  : existingItem.AddQuantity(quantity);
+
+        if (saleItemResult.Succeeded)
             CalculateTotal();
-        }
 
         return saleItemResult;
     }
@@ -95,6 +95,15 @@ public sealed class Sale : BaseEntity
         QueueDomainEvent(new SaleItemRemovedDomainEvent(Guid.NewGuid(), Id));
 
         return ValueResult.Success();
+    }
+
+    private ValueResult<SaleItem> AddNewItem(Product product, int quantity)
+    {
+        var saleItemResult = SaleItem.Create(Id, product, quantity);
+        if (saleItemResult.Succeeded)
+            Products.Add(saleItemResult.Value!);
+
+        return saleItemResult;
     }
 
     private void CalculateTotal()

@@ -7,7 +7,7 @@ namespace Sales.Domain.Sales;
 
 public sealed class SaleItem : BaseEntity
 {
-    private const byte MAX_QUANTITY_ALLOWED = 20;
+    internal const byte MAX_QUANTITY_ALLOWED = 20;
 
     public Guid SaleId { get; private set; }
     public Product Product { get; private set; }
@@ -26,20 +26,14 @@ public sealed class SaleItem : BaseEntity
     {
         SaleId = saleId;
         Product = product;
+        ProductId = product.Id;
         Quantity = quantity;
         UnitPrice = product.Price;
 
-        //// Simple approach
-        // Discount = CalculateDiscount();
-
-        var discountPercentage = DiscountPercentageCalculator.Calculate(Quantity);
-        if (discountPercentage.HasValue)
-            Discount = UnitPrice * Quantity * discountPercentage.Value;
-
-        TotalAmount = (UnitPrice * Quantity) - Discount;
+        CalculateTotal();
     }
 
-    public static ValueResult<SaleItem> Create(Guid saleId, Product product, int quantity)
+    internal static ValueResult<SaleItem> Create(Guid saleId, Product product, int quantity)
     {
         var errors = new List<FailureDetail>();
 
@@ -53,7 +47,7 @@ public sealed class SaleItem : BaseEntity
             errors.Add(FailureDetail.NegativeOrZeroValue(nameof(quantity)));
 
         if (quantity > MAX_QUANTITY_ALLOWED)
-            errors.Add(new FailureDetail("MaximumQuantityExceeded", "Maximum quantity exceeded.", $"A maximum of {MAX_QUANTITY_ALLOWED} items are allowed per product."));
+            errors.Add(SaleItemFailureDetail.MaximumQuantityExceeded);
 
         if (product?.Price <= 0)
             errors.Add(FailureDetail.NegativeOrZeroValue(nameof(product.Price)));
@@ -62,17 +56,40 @@ public sealed class SaleItem : BaseEntity
                                  : ValueResult<SaleItem>.Failure(errors);
     }
 
-    //// Simple approach
-    //private decimal CalculateDiscount()
-    //{
-    //    var total = Quantity * UnitPrice;
+    internal ValueResult<SaleItem> AddQuantity(int quantity)
+    {
+        if (quantity <= 0)
+            return ValueResult<SaleItem>.Failure(FailureDetail.NegativeOrZeroValue(nameof(quantity)));
 
+        Quantity += quantity;
+        if (Quantity > MAX_QUANTITY_ALLOWED)
+            return ValueResult<SaleItem>.Failure(SaleItemFailureDetail.MaximumQuantityExceeded);
+
+        CalculateTotal();
+
+        return ValueResult<SaleItem>.Success(this);
+    }
+
+    private void CalculateTotal()
+    {
+        //// Simple approach
+        // var discountPercentage = CalculateDiscountPercentage();
+        var discountPercentage = DiscountPercentageCalculator.Calculate(Quantity);
+        if (discountPercentage.HasValue)
+            Discount = UnitPrice * Quantity * discountPercentage.Value;
+
+        TotalAmount = (UnitPrice * Quantity) - Discount;
+    }
+
+    //// Simple approach
+    //private decimal? CalculateDiscountPercentage()
+    //{
     //    if (Quantity >= 10)
-    //        return total * 0.2M;
+    //        return 0.2M;
 
     //    if (Quantity >= 4)
-    //        return total * 0.1M;
+    //        return 0.1M;
 
-    //    return 0M;
+    //    return null;
     //}
 }
